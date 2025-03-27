@@ -66,6 +66,13 @@ async function sendEmailNotifications(subscribers, content, title, slug) {
 
 	try {
 		const sendPromises = subscribers.map((subscriber) => {
+			if (!subscriber.email || !subscriber.email.includes("@")) {
+				console.error(`🚨 Invalid email detected: ${subscriber.email}`);
+				return Promise.resolve(); // Skip this email
+			}
+
+			console.log(`📧 Sending email to: ${subscriber.email}`);
+
 			try {
 				const emailParams = {
 					Destination: { ToAddresses: [subscriber.email] },
