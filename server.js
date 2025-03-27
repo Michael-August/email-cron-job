@@ -1,9 +1,11 @@
-import dotenv from "dotenv";
-import { createClient } from "redis";
-import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
-import moment from "moment";
+const dotenv = require("dotenv");
+const { createClient } = require("redis");
+const { SESClient, SendEmailCommand } = require("@aws-sdk/client-ses");
+const moment = require("moment");
+const cron = require("node-cron");
 
-import cron from "node-cron";
+// Load environment variables
+dotenv.config();
 
 dotenv.config();
 
