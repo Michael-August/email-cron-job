@@ -73,8 +73,6 @@ async function sendEmailNotifications(subscribers, content, title, slug) {
 				return Promise.resolve(); // Skip this email
 			}
 
-			console.log(`📧 Sending email to: ${subscriber.email}`);
-
 			try {
 				const emailParams = {
 					Destination: { ToAddresses: [subscriber.email] },
