@@ -41,9 +41,10 @@ const SESClientConfig = new SESClient({
 	},
 });
 
+let lastLogTime = 0;
+
 async function processEmailQueue() {
 	const batch = await redis.lRange(QUEUE_KEY, 0, BATCH_SIZE - 1); // Get first 50
-	lastLogTime = 0;
 	if (batch.length === 0) {
 		const now = Date.now();
 		if (now - lastLogTime > 60 * 60 * 1000) {
